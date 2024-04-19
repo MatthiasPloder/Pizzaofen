@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaofen Steuerung</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Willkommen beim Pizzaofen</h1>
+    </header>
+
+    <main>
+        <section id="heating-control">
+            <h2>Heizsteuerung</h2>
+            <div id="pizzaofen-container">
+                <img src="img/pizzaofen.jpeg" alt="Pizzaofen" style="max-width: 100%;">
+                <!-- Overlay-Bild für obere Heizung -->
+                <img id="pizzaofen-overlay-upper" class="overlay-image" src="img/Oben.jpeg" alt="Obere Heizung">
+                <!-- Overlay-Bild für untere Heizung -->
+                <img id="pizzaofen-overlay-lower" class="overlay-image" src="img/Unten.jpeg" alt="Untere Heizung">
+                <!-- Overlay-Bild für beide Heizungen -->
+                <img id="pizzaofen-overlay-both" class="overlay-image" src="img/IMG_1494.jpeg" alt="Beide Heizungen">
+            </div>
+            <input type="range" id="heating-range" name="heating-range" min="0" max="380" step="10" onchange="adjustHeating(this.value)">
+            <output for="heating-range" id="current-temperature">0 Grad Celsius</output>
+            <div class="button-group">
+                <button onclick="setPizzaTemperature(250)">Kleine Pizza</button>
+                <button onclick="setPizzaTemperature(300)">Mittlere Pizza</button>
+                <button onclick="setPizzaTemperature(380)">Große Pizza</button>
+            </div>
+            <button onclick="toggleHeating('upper')">Obere Heizung: <span id="upper-heating-status">Aus</span></button>
+            <button onclick="toggleHeating('lower')">Untere Heizung: <span id="lower-heating-status">Aus</span></button>
+            <button onclick="toggleGrill()">Grill</button>
+            <button onclick="turnOffAllHeating()">Alle Heizungen ausschalten</button>
+            <button onclick="startBacking()">Starten</button>
+        </section>
+    </main>
+
+</body>
+</html>

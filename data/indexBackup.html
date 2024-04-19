@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
+  <title>Pizza Oven Control</title>
+  <link rel="styleheet" href="styles.css">
+</head>
+<html lang="de">
+
+<body style="min-height: 90vh">
+  <div style="background-image: url(pizzaofen.jpeg); min-height: 90vh;" class="value">
+    <div style="display: flex; justify-content: space-around; padding-top: 50pt;">
+      <div>Wert 1 %PLACEHOLDER_TEMPARATUR1%</div>
+      <div>Wert 2 %PLACEHOLDER_TEMPARATUR2%</div>
+      <div>Wert 3 %PLACEHOLDER_TEMPARATUR3%</div>
+      <div>Wert 4 %PLACEHOLDER_TEMPARATUR4%</div>
+    </div>
+
+    <div style="display: flex; justify-content: center; justify-items: end; padding-top: 200pt;">
+      <h2>Control Pizza Oven</h2>
+      <select id="pizzadicke">
+        <option value="low">Dünn</option>
+        <option value="medium">Normal</option>
+        <option value="high">Dick</option>
+      </select>
+      <button onclick="startOven()">Start Oven</button>
+    </div>
+
+    <div style="display: flex; justify-content: space-around; align-content: flex-end; min-height: auto;  padding-top: 200pt;">
+      <div>Wert 5 %PLACEHOLDER_TEMPARATUR5%</div>
+      <div>Wert 6 %PLACEHOLDER_TEMPARATUR6%</div>
+      <div>Wert 7 %PLACEHOLDER_TEMPARATUR7%</div>
+      <div>Wert 8 %PLACEHOLDER_TEMPARATUR8%</div>
+    </div>
+  </div>
+</body>
+<script src="script.js"></script>
+</html>

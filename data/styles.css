@@ -1,0 +1,81 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  background-image: url('img/definition-von-feuer.jpg'); /* Pfad zum Hintergrundbild */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+header {
+  background-color: #8b4513;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#heating-control {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+
+h2 {
+  margin-top: 0;
+  color: #8b4513;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #8b4513;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 5px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #654321;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Overlay-Bild */
+#pizzaofen-container {
+  position: relative;
+}
+
+.overlay-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
