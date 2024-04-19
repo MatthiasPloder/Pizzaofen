@@ -6,6 +6,17 @@
     <title>Pizzaofen Steuerung</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
     <script src="script.js"></script>
+
+    <script>
+        setInterval(() => {
+            fetch('/temperature')
+               .then(response => response.json())
+               .then(data => {
+                    document.getElementById("temp-value").innerHTML = `${data.temperature}°C`;
+                })
+               .catch(error => console.error('Error:', error));
+        }, 10000);
+    </script>
 </head>
 <body>
     <header>
@@ -14,7 +25,9 @@
 
     <main>
         <section id="heating-control">
-            <h2>Heizsteuerung</h2>
+            <h2>Heizsteuerung 
+                <ul id="temperature-list"></ul>
+            </h2>
             <div id="pizzaofen-container">
                 <img src="img/pizzaofen.jpeg" alt="Pizzaofen" style="max-width: 100%;">
                 <!-- Overlay-Bild für obere Heizung -->
@@ -37,6 +50,7 @@
             <button onclick="turnOffAllHeating()">Alle Heizungen ausschalten</button>
             <button onclick="startBacking()">Starten</button>
         </section>
+
     </main>
 
 </body>

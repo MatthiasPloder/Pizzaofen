@@ -10,8 +10,9 @@ const char *password = "123456789";
 const int serverPort = 80;
 
 int x = 0;
-int i = 0;
-int Temparatur[8];
+int y = 0;
+int Temparatur[8] = {0,0,0,0,0,0,0,0};
+int TempAVG;
 
 #define NODE_ADDRESS 2
 #define PAYLOAD_SIZE 2
@@ -46,6 +47,21 @@ void setup()
     request->send(200, "text/plain", "Data received successfully");
   });
   
+server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request) {
+  String json = "{\"temperatures\": [";
+  for (int i = 0; i < 8; i++) {
+    json += String(Temparatur[i]);
+    Serial.print(Temparatur[i] + ", ");
+    if (i < 7) {
+      json += ",";
+    }
+  }
+  json += "]}";
+  request->send(200, "application/json", json);
+  for(int i = 0; i < 8; i++){
+    Temparatur[i] = 0;
+  }
+});
   server.on("/styles.css", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/styles.css", "text/css"); });
   server.on("/script.js", HTTP_GET, [](AsyncWebServerRequest *request)
@@ -93,13 +109,12 @@ void connectToWifi()
 void receiveEvent(int bytes)
 {
   x = Wire.read(); // lies die gesendeten Daten aus
-  i++;
-  Temparatur[i] = x * 2; // speichert die empfangenen Werte in einem Array ab
-  Serial.println(Temparatur[i]);
-  if (i > 8)
+  Temparatur[y] = x * 2; // speichert die empfangenen Werte in einem Array ab
+  if (y > 7)
   {
-    i = 0;
+    y = 0;
   }
+    y++;
 }
 
 void requestEvent()
