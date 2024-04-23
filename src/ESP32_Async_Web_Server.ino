@@ -9,9 +9,8 @@ const char *ssid = "matze";
 const char *password = "123456789";
 const int serverPort = 80;
 
-int x = 0;
-int y = 0;
-int Temparatur[8] = {0,0,0,0,0,0,0,0};
+int index1 = 0;
+int Temparatur[8] = {1,2,3,4,5,6,7,8};
 int TempAVG;
 
 #define NODE_ADDRESS 2
@@ -51,16 +50,12 @@ server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request) {
   String json = "{\"temperatures\": [";
   for (int i = 0; i < 8; i++) {
     json += String(Temparatur[i]);
-    Serial.print(Temparatur[i] + ", ");
     if (i < 7) {
       json += ",";
     }
   }
   json += "]}";
   request->send(200, "application/json", json);
-  for(int i = 0; i < 8; i++){
-    Temparatur[i] = 0;
-  }
 });
   server.on("/styles.css", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/styles.css", "text/css"); });
@@ -108,13 +103,13 @@ void connectToWifi()
 
 void receiveEvent(int bytes)
 {
+  int x;
   x = Wire.read(); // lies die gesendeten Daten aus
-  Temparatur[y] = x * 2; // speichert die empfangenen Werte in einem Array ab
-  if (y > 7)
-  {
-    y = 0;
-  }
-    y++;
+  Temparatur[index1] = x * 2; // speichert die empfangenen Werte in einem Array ab
+  index1++;
+  if(index1 == 8) {
+    index1=0;
+    }
 }
 
 void requestEvent()

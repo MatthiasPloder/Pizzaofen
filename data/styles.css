@@ -9,6 +9,27 @@ body {
   background-attachment: fixed;
 }
 
+#temperature-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#temperature-list div {
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+#temperature-list div:last-child {
+  margin-bottom: 0;
+}
+
+
 header {
   background-color: #8b4513;
   color: #fff;

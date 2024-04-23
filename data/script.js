@@ -18,19 +18,6 @@ function startBacking() {
   http.open("GET", "/update?output=" + tempereture + "/" + oben, true);
   http.send();
 }
-window.onload = function () {
-  fetch('/temperature')
-   .then(response => response.json())
-   .then(data => {
-      const tempList = document.getElementById('temperature-list');
-      data.temperatures.forEach((temperature, index) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `Sensor ${index + 1}: ${temperature}°C`;
-        tempList.appendChild(listItem);
-      });
-    })
-   .catch(error => console.error('Error fetching temperature data:', error));
-};
 
 function toggleHeating(heatingType) {
   let upperHeatingStatus = document.getElementById("upper-heating-status");

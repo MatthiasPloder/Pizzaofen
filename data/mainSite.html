@@ -7,16 +7,6 @@
     <link rel="stylesheet" href="styles.css" type="text/css">
     <script src="script.js"></script>
 
-    <script>
-        setInterval(() => {
-            fetch('/temperature')
-               .then(response => response.json())
-               .then(data => {
-                    document.getElementById("temp-value").innerHTML = `${data.temperature}°C`;
-                })
-               .catch(error => console.error('Error:', error));
-        }, 10000);
-    </script>
 </head>
 <body>
     <header>
@@ -25,9 +15,7 @@
 
     <main>
         <section id="heating-control">
-            <h2>Heizsteuerung 
-                <ul id="temperature-list"></ul>
-            </h2>
+            <h2>Heizsteuerung</h2>
             <div id="pizzaofen-container">
                 <img src="img/pizzaofen.jpeg" alt="Pizzaofen" style="max-width: 100%;">
                 <!-- Overlay-Bild für obere Heizung -->
@@ -37,6 +25,34 @@
                 <!-- Overlay-Bild für beide Heizungen -->
                 <img id="pizzaofen-overlay-both" class="overlay-image" src="img/IMG_1494.jpeg" alt="Beide Heizungen">
             </div>
+            <ul id="temperature-list">
+                <script>
+                    async function getTemperatureList() {
+                      try {
+                        const response = await fetch('/temperature');
+                        const data = await response.json();
+                        const tempList = document.getElementById('temperature-list');
+                        tempList.innerHTML = ''; // clear previous list
+                        data.temperatures.forEach((temperature, index) => {
+                          const listItem = document.createElement('div');
+                          listItem.textContent = `Sensor ${index + 1}: ${temperature}°C`;
+                          tempList.appendChild(listItem);
+                        });
+                      } catch (error) {
+                        console.error('Error fetching temperature data:', error);
+                      }
+                    }
+                    
+                    setInterval(() => {
+                     getTemperatureList();
+                    }, 10000);
+            
+                    window.onload = function () {
+                      getTemperatureList();
+                    };
+                </script>
+            </ul>
+    
             <input type="range" id="heating-range" name="heating-range" min="0" max="380" step="10" onchange="adjustHeating(this.value)">
             <output for="heating-range" id="current-temperature">0 Grad Celsius</output>
             <div class="button-group">
