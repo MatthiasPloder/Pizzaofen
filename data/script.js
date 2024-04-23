@@ -45,6 +45,7 @@ function toggleHeating(heatingType) {
       console.log("Untere Heizung eingeschaltet.");
     } else {
       lowerHeatingStatus.innerHTML = "Aus";
+      oben = 2;
       lowerHeatingOverlay.style.display = "none"; // Overlay ausblenden
       console.log("Untere Heizung ausgeschaltet.");
     }

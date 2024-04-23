@@ -8,14 +8,14 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
 #temperature-list {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
-
 #temperature-list div {
-  margin-bottom: 5px;
+  margin: 5px;
   padding: 10px;
   border-radius: 5px;
   background-color: #f0f0f0;
@@ -24,10 +24,23 @@ body {
   font-size: 14px;
   color: #333;
 }
-
-#temperature-list div:last-child {
-  margin-bottom: 0;
+/* Stelle sicher, dass die Temperaturwerte auf mobilen Geräten in einer Spalte angezeigt werden */
+@media (max-width: 600px) {
+  #temperature-list div {
+    flex-basis: calc(100% - 10px);
+  }
 }
+
+/* Ordne die ersten vier Werte in einer Spalte an */
+#temperature-list div:nth-child(-n+4) {
+  flex-basis: calc(20% - 10px); /* 25% Breite für jedes Element */
+}
+
+/* Ordne die Werte 5 bis 8 in einer anderen Spalte an */
+#temperature-list div:nth-child(n+5) {
+  flex-basis: calc(20% - 10px); /* 25% Breite für jedes Element */
+}
+
 
 
 header {
